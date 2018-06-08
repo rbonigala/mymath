@@ -8,16 +8,55 @@ using MyMath.Models;
 namespace MyMath.Pages.Simple
 {
     public class IndexModel : PageModel
-    {  
-        public Basic twoNumberQuestion;
+    {
+        public Basic twoNumberQuestion = new Basic();
+
         Random leftRandomNumber = new Random();
-       
-        public void OnGet()
+
+        public string Status
         {
-            leftRandomNumber.Next();
-            twoNumberQuestion = new Basic();
-            twoNumberQuestion.LeftNumber = leftRandomNumber.Next(10);
-            twoNumberQuestion.RightNumber = leftRandomNumber.Next(10);
+            get;
+            set;
+        }
+
+       
+        [BindProperty]
+        public Basic CurrentQuestion
+        {
+            get;set;
+
+        }
+
+   
+
+        public IActionResult OnGet()
+        {
+            CurrentQuestion = new Basic();
+            CurrentQuestion.LeftNumber = leftRandomNumber.Next(10);
+            CurrentQuestion.RightNumber = leftRandomNumber.Next(10);
+            return Page();
+
+        }
+
+
+
+        public IActionResult OnPostAsync()
+        {
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if(CurrentQuestion.LeftNumber + CurrentQuestion.RightNumber == CurrentQuestion.Result)
+            {
+                Status = "Correct";
+            }
+            else
+            {
+                Status = "Please Try";
+            }
+
+            return RedirectToPage("/Simple/Index");
         }
     }
 }

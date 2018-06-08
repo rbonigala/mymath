@@ -3,7 +3,7 @@ using System;
 
 namespace MyMath.Models
 {
-    public class Basic
+    public class Basic : IQuestion
     {
         public long LeftNumber {get; set;}
 
@@ -13,6 +13,17 @@ namespace MyMath.Models
 
         public BasicOperation Operation {get; set;}
 
+        private string questionName;
+
+        public string Name 
+        { 
+            get{
+                return questionName;
+            } 
+            set{
+                questionName = "Basic Two Number Question";
+            } 
+        }
     }
     
 }
