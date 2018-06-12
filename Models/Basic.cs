@@ -11,7 +11,7 @@ namespace MyMath.Models
 
         public long Result { get; set; }    
 
-        public BasicOperation Operation {get; set;}
+        public Char Operation {get; set;}
 
         private string questionName;
 
@@ -21,7 +21,7 @@ namespace MyMath.Models
                 return questionName;
             } 
             set{
-                questionName = "Basic Two Number Question";
+                questionName = value;
             } 
         }
     }

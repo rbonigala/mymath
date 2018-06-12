@@ -5,14 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using MyMath.Models;
 
+
 namespace MyMath.Pages.Simple
 {
     public class IndexModel : PageModel
     {
         public Basic twoNumberQuestion = new Basic();
 
-        Random leftRandomNumber = new Random();
 
+        Array operations = Enum.GetValues(typeof(BasicOperation));
+
+        [BindProperty]
         public string Status
         {
             get;
@@ -23,19 +26,16 @@ namespace MyMath.Pages.Simple
         [BindProperty]
         public Basic CurrentQuestion
         {
-            get;set;
+            get; set;
 
         }
-
-   
+    
 
         public IActionResult OnGet()
         {
-            CurrentQuestion = new Basic();
-            CurrentQuestion.LeftNumber = leftRandomNumber.Next(10);
-            CurrentQuestion.RightNumber = leftRandomNumber.Next(10);
+            Calculate calculate = new Calculate();
+            CurrentQuestion = calculate.SimpleCalculation(CurrentQuestion);
             return Page();
-
         }
 
 
@@ -56,7 +56,8 @@ namespace MyMath.Pages.Simple
                 Status = "Please Try";
             }
 
-            return RedirectToPage("/Simple/Index");
+
+            return RedirectToPage();
         }
     }
 }

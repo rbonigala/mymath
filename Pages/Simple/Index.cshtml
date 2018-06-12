@@ -3,42 +3,53 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div style="margin-top:50px"></div>
-<div class="row col-md-offset-2"><h3>Please solve this problem</h3></div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-4">
+        <h3>Please solve this problem</h3>
+    </div>
+    <div class="col-md-4" id="timer">
+
+    </div>
+</div>
+
 <div style="margin-top:50px"></div>
-<div>
+<div class="container">
     <form class="form-horizontal" method="post">
-        <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label" asp-for="CurrentQuestion.LeftNumber"></label>
-            <div class="col-sm-2">
-                <input asp-for="CurrentQuestion.LeftNumber" class="form-control">
+        <div class="row form-group form-group-lg">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <input asp-for="CurrentQuestion.LeftNumber" class="form-control" disabled>
 
             </div>
         </div>
-        <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label" asp-for="CurrentQuestion.RightNumber">+</label>
-            <div class="col-sm-2">
-                <input asp-for="CurrentQuestion.RightNumber" class="form-control" />
+        <div class="row form-group form-group-lg">
+            <label class="col-md-2 control-label" asp-for="CurrentQuestion.RightNumber">@Model.CurrentQuestion.Operation</label>
+            <div class="col-md-2">
+                <input asp-for="CurrentQuestion.RightNumber" class="form-control" disabled />
             </div>
         </div>
         <div><hr></div>
 
-        <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label" for="answer"></label>
-            <div class="col-sm-2">
+        <div class="row form-group form-group-lg">
+            <label class="col-md-2 control-label" for="answer"></label>
+            <div class="col-md-2">
+                <input type="number" id="GivenAnswerTxt" name="GivenAnswerTxt" class="form-control" autofocus>
 
-                <input asp-for="CurrentQuestion.Result" class="form-control">
-              
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" id="btnCheckAnswer" autocomplete="off" name="btnCheckAnswer" type="submit">Check Answer</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" id="btnNextQ" name="btnNextQ" type="submit">Next Question</button>
             </div>
         </div>
-        <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label" for=""></label>
-            <div class="col-sm-2">
-                <button class="btn btn-primary" type="submit">Next Question</button>
+
+        <div class="row form-group form-group-lg">
+            <div class=col-md-4></div>
+            <div class="col-md-2">
+                <mark><strong><asp:label id="status" name="status"></asp:label></strong></mark>
             </div>
         </div>
-        <div class="form-group form-group-lg">
-            <label asp-for="Status"></label>
-
-        </div>
+        <input name="result" id="result" type="hidden" value="@Model.CurrentQuestion.Result" />
     </form>
 </div>
