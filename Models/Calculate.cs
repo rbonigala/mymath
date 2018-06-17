@@ -1,9 +1,10 @@
 ﻿using System;
+using MyMath.Interfaces;
 
 namespace MyMath.Models
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class Calculate
+    public class Calculate : ICalculate
     {
 
         public Calculate()
